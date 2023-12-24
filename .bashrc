@@ -23,3 +23,25 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
+
+# Function to commit and push dotfiles
+function commit_dotfiles() {
+    # Navigate to your dotfiles directory
+    cd ~
+
+    # Add all files
+    git add .bashrc
+    git add .zshrc
+    git add .vimrc
+
+    # Commit changes with a message
+    git commit -m "Update dotfiles"
+
+    # Push changes to the remote repository
+    git push origin main
+}
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
